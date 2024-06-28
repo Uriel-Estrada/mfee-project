@@ -31,7 +31,7 @@ const getPostsByCategory = async (req, res) => {
 const getPostById = async (req, res) => {
   try {
     const { id } = req.params;
-    const post = await Post.findById(id).populate('category');
+    const post = await Post.findById(id).populate('category').populate('comments');
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }
